@@ -18,14 +18,28 @@ const Contact = () => {
     e.preventDefault();
     setStatus('sending');
 
-    // Simulate form submission - replace with actual API call
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setStatus('sent');
-      setFormData({ name: '', email: '', message: '' });
-      
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1000);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setStatus("sent");
+      setFormData({ name: "", email: "", message: "" });
+
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
