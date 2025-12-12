@@ -50,7 +50,10 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-800 px-6">
+    <section
+      id="contact"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 px-6"
+    >
       <div className="max-w-7xl w-full mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +64,7 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-16"></div>
+          <div className="w-20 h-1 bg-emerald-600 mx-auto mb-16"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -77,20 +80,29 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 Let's work together!
               </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                I'm always interested in hearing about new projects and opportunities. 
-                Feel free to reach out if you'd like to collaborate or just want to say hi!
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                I'm always interested in hearing about new projects and
+                opportunities. Feel free to reach out if you'd like to
+                collaborate or just want to say hi!
               </p>
             </div>
 
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                  <FaEnvelope className="text-blue-600 dark:text-blue-400" size={20} />
+                <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
+                  <FaEnvelope
+                    className="text-emerald-600 dark:text-emerald-400"
+                    size={20}
+                  />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">Email</p>
-                  <a href={`mailto:${personalInfo.email}`} className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    Email
+                  </p>
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="text-emerald-600 dark:text-emerald-400 hover:underline"
+                  >
                     {personalInfo.email}
                   </a>
                 </div>
@@ -98,7 +110,9 @@ const Contact = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Connect with me</h4>
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+                Connect with me
+              </h4>
               <div className="flex gap-4">
                 {socialLinks.map((link) => {
                   const Icon = link.icon;
@@ -108,7 +122,7 @@ const Contact = () => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white transition-colors duration-200"
+                      className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-600 hover:text-white transition-colors duration-200"
                     >
                       <Icon size={20} />
                     </a>
@@ -125,9 +139,15 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border border-transparent dark:border-gray-700">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border border-transparent dark:border-gray-700"
+            >
               <div>
-                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
+                >
                   Name
                 </label>
                 <input
@@ -137,13 +157,16 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition-all dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
+                >
                   Email
                 </label>
                 <input
@@ -153,13 +176,16 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition-all dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                   placeholder="your.email@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -169,20 +195,20 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all resize-none dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition-all resize-none dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                   placeholder="Your message..."
                 />
               </div>
 
               <button
                 type="submit"
-                disabled={status === 'sending'}
-                className="w-full px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors duration-200 font-semibold disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
+                disabled={status === "sending"}
+                className="w-full px-8 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 transition-colors duration-200 font-semibold disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
               >
-                {status === 'sending' && 'Sending...'}
-                {status === 'sent' && '✓ Message Sent!'}
-                {status === 'idle' && 'Send Message'}
-                {status === 'error' && 'Try Again'}
+                {status === "sending" && "Sending..."}
+                {status === "sent" && "✓ Message Sent!"}
+                {status === "idle" && "Send Message"}
+                {status === "error" && "Try Again"}
               </button>
             </form>
           </motion.div>

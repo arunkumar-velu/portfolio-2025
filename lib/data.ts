@@ -1,5 +1,6 @@
 import { Project, Skill, SocialLink } from '@/types';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { SiHashnode } from "react-icons/si";
 
 export const personalInfo = {
   name: "Arun Kumar Velu",
@@ -146,6 +147,11 @@ export const socialLinks: SocialLink[] = [
     name: "Twitter",
     url: "https://x.com/arun_kumar_velu",
     icon: FaTwitter,
+  },
+  {
+    name: "Blog",
+    url: "https://arunkumarvelu.hashnode.dev",
+    icon: SiHashnode,
   },
   { name: "Email", url: "mailto:guruvaarun@gmail.com", icon: FaEnvelope },
 ];

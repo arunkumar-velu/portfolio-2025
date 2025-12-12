@@ -33,7 +33,10 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-gray-50 to-white px-6">
+    <section
+      id="about"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white px-6"
+    >
       <div className="max-w-7xl w-full mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,9 +47,10 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-6">
             About Me
           </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+          <div className="w-20 h-1 bg-emerald-600 mx-auto mb-4"></div>
           <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-            Frontend Architect passionate about building exceptional digital experiences
+            Frontend Architect passionate about building exceptional digital
+            experiences
           </p>
         </motion.div>
 
@@ -78,11 +82,12 @@ const About = () => {
                   </div>
                 </div>
               </div>
-              
+
               <p className="text-gray-700 leading-relaxed">
-                Seasoned Frontend Architect with proven expertise across React, Angular, Ember, and modern toolchains. 
-                Leading design, development, and optimization of scalable web applications and micro-frontend platforms 
-                for global enterprises.
+                Seasoned Frontend Architect with proven expertise across React,
+                Angular, Ember, and modern toolchains. Leading design,
+                development, and optimization of scalable web applications and
+                micro-frontend platforms for global enterprises.
               </p>
             </div>
 
@@ -92,7 +97,7 @@ const About = () => {
                 <span className="text-blue-600">📧</span>
                 Get in Touch
               </h4>
-              <a 
+              <a
                 href={`mailto:${personalInfo.email}`}
                 className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
               >
@@ -114,28 +119,39 @@ const About = () => {
                 <span className="text-3xl">🚀</span>
                 My Journey
               </h3>
-              
+
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p>
-                  <strong className="text-gray-900">As a founding engineer at ZEPIC</strong>, I architect customizable, 
-                  high-performance dashboards and automation tools that empower businesses to make data-driven decisions.
-                </p>
-                
-                <p>
-                  <strong className="text-gray-900">During my time at Freshworks</strong>, I was a core leader shipping 
-                  real-time messaging systems, unified product suites, and robust platform integrations used by thousands 
-                  of businesses worldwide.
-                </p>
-                
-                <p>
-                  <strong className="text-gray-900">My expertise spans</strong> performance optimization, CI/CD automation, 
-                  micro-frontend architectures, and mentoring high-performing teams to deliver impactful user experiences at scale.
+                  <strong className="text-gray-900">
+                    As a founding engineer at ZEPIC
+                  </strong>
+                  , I architect customizable, high-performance dashboards and
+                  automation tools that empower businesses to make data-driven
+                  decisions.
                 </p>
 
                 <p>
-                  <strong className="text-gray-900">I believe in</strong> writing clean, maintainable code, championing 
-                  test-first engineering culture, and continuously learning emerging technologies to stay ahead in the 
-                  ever-evolving frontend landscape.
+                  <strong className="text-gray-900">
+                    During my time at Freshworks
+                  </strong>
+                  , I was a core leader shipping real-time messaging systems,
+                  unified product suites, and robust platform integrations used
+                  by thousands of businesses worldwide.
+                </p>
+
+                <p>
+                  <strong className="text-gray-900">My expertise spans</strong>{" "}
+                  performance optimization, CI/CD automation, micro-frontend
+                  architectures, and mentoring high-performing teams to deliver
+                  impactful user experiences at scale.
+                </p>
+
+                <p>
+                  <strong className="text-gray-900">I believe in</strong>{" "}
+                  writing clean, maintainable code, championing test-first
+                  engineering culture, and continuously learning emerging
+                  technologies to stay ahead in the ever-evolving frontend
+                  landscape.
                 </p>
               </div>
             </div>
@@ -152,7 +168,7 @@ const About = () => {
           <h3 className="text-3xl font-bold text-center text-gray-900 mb-10">
             What I Bring to the Table
           </h3>
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((item, index) => (
               <motion.div
@@ -164,19 +180,21 @@ const About = () => {
                 className="group relative bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
               >
                 {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                ></div>
+
                 <div className="relative">
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <item.icon className="text-white text-2xl" />
                   </div>
-                  
+
                   <h4 className="text-lg font-bold text-gray-900 mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-sm text-gray-600">
-                    {item.description}
-                  </p>
+                  <p className="text-sm text-gray-600">{item.description}</p>
                 </div>
               </motion.div>
             ))}

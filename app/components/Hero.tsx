@@ -6,7 +6,10 @@ import { personalInfo, socialLinks } from '@/lib/data';
 const Hero = () => {
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 px-6 py-20 pt-32">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 px-6 py-20 pt-32"
+    >
       <div className="max-w-5xl w-full mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +70,7 @@ const Hero = () => {
         >
           <a
             href="#projects"
-            className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 font-semibold"
+            className="px-8 py-3 bg-emerald-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 font-semibold"
           >
             View My Work
           </a>

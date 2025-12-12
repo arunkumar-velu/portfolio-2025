@@ -15,18 +15,23 @@ const Sidebar = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Home", href: "#home" },
+    { name: "Experience", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    {
+      name: "Blog",
+      href: "https://arunkumarvelu.hashnode.dev",
+      external: true,
+    },
+    { name: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
     setIsOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -61,13 +66,15 @@ const Sidebar = () => {
         <div className="p-8 flex flex-col h-full">
           {/* Profile Section */}
           <div className="mb-8 text-center">
-            <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-4xl font-bold shadow-xl ring-4 ring-blue-500/20 dark:ring-blue-400/30">
-              AV
-            </div>
-            <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <img
+              src="/arun.jpg"
+              alt={personalInfo.name}
+              className="w-32 h-32 mx-auto mb-4 rounded-2xl object-cover shadow-xl ring-4 ring-emerald-500/20 dark:ring-teal-400/30"
+            />
+            <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               {personalInfo.name}
             </h1>
-            <p className="text-blue-600 dark:text-blue-400 text-sm mb-3 font-medium">
+            <p className="text-emerald-600 dark:text-emerald-400 text-sm mb-3 font-medium">
               {personalInfo.role}
             </p>
             <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-300 text-sm bg-gray-100 dark:bg-gray-800/50 px-4 py-2 rounded-full mx-auto w-fit">
@@ -81,13 +88,28 @@ const Sidebar = () => {
             <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <button
-                    onClick={() => scrollToSection(item.href)}
-                    className="w-full text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 dark:hover:from-blue-600 dark:hover:to-purple-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-400/10 dark:to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity -z-0"></div>
-                  </button>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full block text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
+                    >
+                      <span className="relative z-10 flex items-center gap-2">
+                        {item.name}
+                        <span className="text-xs">↗</span>
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-400/10 dark:to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity -z-0"></div>
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(item.href)}
+                      className="w-full text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
+                    >
+                      <span className="relative z-10">{item.name}</span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-400/10 dark:to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity -z-0"></div>
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -118,7 +140,7 @@ const Sidebar = () => {
 
           {/* Social Links */}
           <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center font-medium">
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 text-center font-medium">
               Connect with me
             </p>
             <div className="flex justify-center gap-3">
@@ -128,7 +150,7 @@ const Sidebar = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-400/10 dark:to-purple-400/10 hover:from-blue-500 hover:to-purple-500 dark:hover:from-blue-600 dark:hover:to-purple-600 text-gray-700 dark:text-gray-300 hover:text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                  className="w-11 h-11 flex items-center justify-center bg-gradient-to-br from-emerald-500/10 to-teal-500/10 dark:from-emerald-400/10 dark:to-teal-400/10 hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 text-gray-700 dark:text-gray-300 hover:text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
                   aria-label={link.name}
                 >
                   <link.icon className="text-xl" />
@@ -141,7 +163,7 @@ const Sidebar = () => {
           <div className="mt-6 text-center">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
+              className="text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors font-medium"
             >
               {personalInfo.email}
             </a>

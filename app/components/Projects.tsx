@@ -18,9 +18,10 @@ const Projects = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
             Featured Projects
           </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto">
-            Scalable platforms and tools impacting thousands of businesses worldwide
+          <div className="w-20 h-1 bg-emerald-600 mx-auto mb-4"></div>
+          <p className="text-center text-gray-600 dark:text-gray-300 mb-16 max-w-2xl mx-auto">
+            Scalable platforms and tools impacting thousands of businesses
+            worldwide
           </p>
         </motion.div>
 
@@ -49,13 +50,15 @@ const Projects = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  {project.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-sm font-medium"
                     >
                       {tech}
                     </span>
@@ -68,7 +71,7 @@ const Projects = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                     >
                       <FaGithub size={20} />
                       <span>Code</span>
@@ -79,7 +82,7 @@ const Projects = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                      className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                     >
                       <FaExternalLinkAlt size={18} />
                       <span>Live Demo</span>

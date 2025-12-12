@@ -82,8 +82,8 @@ const Experience = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
             Career Journey
           </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-emerald-600 mx-auto mb-4"></div>
+          <p className="text-center text-gray-600 dark:text-gray-300 mb-16 max-w-2xl mx-auto">
             From enterprise solutions at Cognizant to architecting platforms at
             ZEPIC
           </p>
@@ -91,7 +91,7 @@ const Experience = () => {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-300 via-purple-300 to-indigo-300"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-emerald-300 via-teal-300 to-cyan-300 dark:from-emerald-600 dark:via-teal-600 dark:to-cyan-600"></div>
 
           <div className="space-y-0">
             {experiences.map((exp, index) => (
@@ -104,7 +104,7 @@ const Experience = () => {
                   viewport={{ once: true }}
                   className="relative flex justify-center py-8"
                 >
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center z-10">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-600 to-teal-600 dark:from-emerald-500 dark:to-teal-500 rounded-full border-4 border-white dark:border-gray-800 shadow-lg flex items-center justify-center z-10">
                     <span className="text-white font-bold text-xs leading-tight text-center px-1">
                       {exp.year}
                     </span>
@@ -134,22 +134,26 @@ const Experience = () => {
                         <div className="flex items-start gap-4 mb-6">
                           <div className="flex-shrink-0 w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center p-2">
                             <div className="w-12 h-12 relative bg-gray-100 rounded-lg flex items-center justify-center text-2xl font-bold text-gray-600">
-                              {exp.logo ? <Image
-                                src={exp.logo}
-                                alt={exp.company}
-                                fill
-                                className="object-contain rounded-lg"
-                              /> : exp.company.charAt(0)}
+                              {exp.logo ? (
+                                <Image
+                                  src={exp.logo}
+                                  alt={exp.company}
+                                  fill
+                                  className="object-contain rounded-lg"
+                                />
+                              ) : (
+                                exp.company.charAt(0)
+                              )}
                             </div>
                           </div>
                           <div className="flex-1">
                             <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1">
                               {exp.role}
                             </h3>
-                            <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-1">
+                            <p className="text-lg font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
                               {exp.company}
                             </p>
-                            <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
+                            <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-300">
                               <span className="flex items-center gap-1">
                                 📅 {exp.period}
                               </span>
@@ -167,7 +171,7 @@ const Experience = () => {
                               key={idx}
                               className="flex items-start gap-3 group"
                             >
-                              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs font-bold mt-0.5 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                                 ✓
                               </span>
                               <span className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
@@ -201,31 +205,31 @@ const Experience = () => {
           </h3>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 border border-blue-100 dark:border-blue-800 hover:shadow-lg transition-shadow">
+            <div className="bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-xl p-6 border border-emerald-200 dark:border-emerald-700 hover:shadow-lg transition-shadow">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl">
+                <div className="flex-shrink-0 w-12 h-12 bg-emerald-600 dark:bg-emerald-500 rounded-lg flex items-center justify-center text-white text-xl">
                   🎓
                 </div>
                 <div>
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                     Bachelor of Engineering
                   </h4>
-                  <p className="text-blue-600 dark:text-blue-300 font-semibold text-sm mb-1">
+                  <p className="text-emerald-700 dark:text-emerald-300 font-semibold text-sm mb-1">
                     Computer Science
                   </p>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  <p className="text-gray-700 dark:text-gray-200 text-sm">
                     Anna University • 2007 - 2011
                   </p>
-                  <p className="text-gray-500 dark:text-gray-300 text-xs mt-1">
+                  <p className="text-gray-600 dark:text-gray-300 text-xs mt-1">
                     Jaya Institute of Technology
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-100 dark:border-purple-800 hover:shadow-lg transition-shadow">
+            <div className="bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900/30 dark:to-cyan-900/30 rounded-xl p-6 border border-teal-200 dark:border-teal-700 hover:shadow-lg transition-shadow">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center text-white text-xl">
+                <div className="flex-shrink-0 w-12 h-12 bg-teal-600 dark:bg-teal-500 rounded-lg flex items-center justify-center text-white text-xl">
                   📜
                 </div>
                 <div>
@@ -234,13 +238,17 @@ const Experience = () => {
                   </h4>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2 text-sm">
-                      <span className="text-purple-600 mt-0.5">✓</span>
+                      <span className="text-teal-600 dark:text-teal-400 mt-0.5">
+                        ✓
+                      </span>
                       <span className="text-gray-700 dark:text-gray-300">
                         Microsoft: HTML5, JavaScript & CSS
                       </span>
                     </li>
                     <li className="flex items-start gap-2 text-sm">
-                      <span className="text-purple-600 mt-0.5">✓</span>
+                      <span className="text-teal-600 dark:text-teal-400 mt-0.5">
+                        ✓
+                      </span>
                       <span className="text-gray-700 dark:text-gray-300">
                         W3C Schools: JavaScript & jQuery
                       </span>
