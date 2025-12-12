@@ -32,6 +32,8 @@ const Home = () => {
     }
   ];
 
+  const yearsOfExperience = new Date().getFullYear() - 2011;
+
   return (
     <section
       id="home"
@@ -93,7 +95,7 @@ const Home = () => {
               Team Leadership
             </span>
             <span className="px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">
-              14 Years Experience
+              {yearsOfExperience}+ Years Experience
             </span>
           </motion.div>
         </motion.div>
