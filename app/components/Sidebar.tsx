@@ -21,7 +21,7 @@ const Sidebar = () => {
     { name: "Skills", href: "#skills" },
     {
       name: "Blog",
-      href: "https://arunkumarvelu.hashnode.dev",
+      href: "https://blogs.arunkumarvelu.com",
       external: true,
     },
     { name: "Contact", href: "#contact" },
