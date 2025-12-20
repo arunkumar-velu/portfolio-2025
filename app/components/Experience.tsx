@@ -1,19 +1,21 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import Image from "next/image";
 
 const Experience = () => {
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+
   const experiences = [
     {
       id: 1,
       role: "Principal Frontend Architect",
       company: "ZEPIC Technologies",
       period: "2023 – Present",
-      year: "Present",
       location: "Chennai, India",
       logo: "https://zepic-webflow.s3.us-east-1.amazonaws.com/favicon.ico",
-      color: "from-purple-50 to-pink-50",
+      technologies: "React, TypeScript, Next.js, Micro-Frontend",
       achievements: [
         "Engineered Customer 360° view platform with drag-and-drop UI",
         "Built customizable Reporting Dashboard with modular widget system",
@@ -27,10 +29,9 @@ const Experience = () => {
       role: "Staff Engineer",
       company: "Freshworks",
       period: "2015 – 2023",
-      year: "2023",
       location: "Chennai, India",
       logo: "https://www.freshworks.com/favicons/favicon.ico",
-      color: "from-blue-50 to-cyan-50",
+      technologies: "EmberJS, React, Node.js",
       achievements: [
         "Architected message fragment structure for multi-format messaging",
         "Built Message Composer with HTML-fragment conversion algorithm",
@@ -44,219 +45,200 @@ const Experience = () => {
       role: "Associate",
       company: "Cognizant Technologies",
       period: "2011 – 2015",
-      year: "2015",
       location: "Chennai, India",
       logo: "https://www.cognizant.com/content/dam/cognizant-dot-com/favicon/default-favicon/32x32.png",
-      color: "from-indigo-50 to-blue-50",
+      technologies: "EmberJS, HTML5, CSS3",
       achievements: [
         "Developed enterprise web applications using ExtJS",
         "Led UI modernization to HTML5/CSS3 frameworks",
         "Mentored developers on frontend architecture",
       ],
     },
-    {
-      id: 4,
-      role: "Career Start",
-      company: "",
-      period: "",
-      year: "2011",
-      location: "",
-      logo: "",
-      color: "",
-      achievements: [],
-    },
   ];
 
   return (
-    <section
-      id="experience"
-      className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 px-6"
-    >
-      <div className="max-w-7xl w-full mx-auto">
+    <section id="experience" className="py-24 bg-white dark:bg-gray-900 px-6">
+      <div className="max-w-4xl w-full mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-6">
-            Career Journey
+          <h2 className="text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-8">
+            EXPERIENCES
           </h2>
-          <div className="w-20 h-1 bg-emerald-600 mx-auto mb-4"></div>
-          <p className="text-center text-gray-600 dark:text-gray-300 mb-16 max-w-2xl mx-auto">
-            From enterprise solutions at Cognizant to architecting platforms at
-            ZEPIC
-          </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-emerald-300 via-teal-300 to-cyan-300 dark:from-emerald-600 dark:via-teal-600 dark:to-cyan-600"></div>
-
-          <div className="space-y-0">
-            {experiences.map((exp, index) => (
-              <div key={exp.id}>
-                {/* Timeline dot with year */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative flex justify-center py-8"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-600 to-teal-600 dark:from-emerald-500 dark:to-teal-500 rounded-full border-4 border-white dark:border-gray-800 shadow-lg flex items-center justify-center z-10">
-                    <span className="text-white font-bold text-xs leading-tight text-center px-1">
-                      {exp.year}
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* Content card - only show if not the career start marker */}
-                {exp.company && (
+        <div className="space-y-4">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="group"
+            >
+              <motion.div
+                className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-md cursor-pointer"
+                onHoverStart={() => setExpandedId(exp.id)}
+                onHoverEnd={() => setExpandedId(null)}
+              >
+                {/* Header - Always Visible */}
+                <div className="flex items-start gap-4 p-6">
+                  {/* Company Logo */}
                   <motion.div
-                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    viewport={{ once: true }}
-                    className={`relative flex flex-col md:flex-row gap-8 pb-8 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
+                    className="flex-shrink-0 w-10 h-10 relative grayscale group-hover:grayscale-0 transition-all duration-300"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div
-                      className={`md:w-1/2 ${
-                        index % 2 === 0 ? "md:pr-12" : "md:pl-12"
-                      }`}
-                    >
-                      <div
-                        className={`bg-gradient-to-br ${exp.color} dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-600`}
-                      >
-                        {/* Header with logo */}
-                        <div className="flex items-start gap-4 mb-6">
-                          <div className="flex-shrink-0 w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center p-2">
-                            <div className="w-12 h-12 relative bg-gray-100 rounded-lg flex items-center justify-center text-2xl font-bold text-gray-600">
-                              {exp.logo ? (
-                                <Image
-                                  src={exp.logo}
-                                  alt={exp.company}
-                                  fill
-                                  className="object-contain rounded-lg"
-                                />
-                              ) : (
-                                exp.company.charAt(0)
-                              )}
-                            </div>
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                              {exp.role}
-                            </h3>
-                            <p className="text-lg font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
-                              {exp.company}
-                            </p>
-                            <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-300">
-                              <span className="flex items-center gap-1">
-                                📅 {exp.period}
-                              </span>
-                              <span className="flex items-center gap-1">
-                                📍 {exp.location}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
+                    {exp.logo && (
+                      <Image
+                        src={exp.logo}
+                        alt={exp.company}
+                        fill
+                        className="object-contain"
+                      />
+                    )}
+                  </motion.div>
 
-                        {/* Achievements */}
-                        <div className="space-y-2.5">
-                          {exp.achievements.map((achievement, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-start gap-3 group"
-                            >
-                              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs font-bold mt-0.5 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                ✓
-                              </span>
-                              <span className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                                {achievement}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
+                        {exp.company}
+                      </h3>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {exp.period}
+                      </span>
                     </div>
 
-                    {/* Empty space for timeline */}
-                    <div className="hidden md:block md:w-1/2"></div>
-                  </motion.div>
-                )}
-              </div>
-            ))}
-          </div>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      {exp.role} · {exp.technologies}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Expandable Achievements */}
+                <AnimatePresence>
+                  {expandedId === exp.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                        transition: {
+                          height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                          opacity: { duration: 0.2, delay: 0.1 },
+                        },
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                        transition: {
+                          height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                          opacity: { duration: 0.15 },
+                        },
+                      }}
+                      className="overflow-hidden border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/30"
+                    >
+                      <ul className="px-6 py-4 space-y-2">
+                        {exp.achievements.map((achievement, idx) => (
+                          <motion.li
+                            key={idx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.05, duration: 0.3 }}
+                            className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-gray-400"
+                          >
+                            {achievement}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Education & Certifications */}
+        {/* Education */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-20"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-50px" }}
+          className="mt-24"
         >
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-10 text-center">
-            Education & Certifications
-          </h3>
+          <motion.h2
+            className="text-sm font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            EDUCATION
+          </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-xl p-6 border border-emerald-200 dark:border-emerald-700 hover:shadow-lg transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-emerald-600 dark:bg-emerald-500 rounded-lg flex items-center justify-center text-white text-xl">
-                  🎓
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                    Bachelor of Engineering
-                  </h4>
-                  <p className="text-emerald-700 dark:text-emerald-300 font-semibold text-sm mb-1">
-                    Computer Science
-                  </p>
-                  <p className="text-gray-700 dark:text-gray-200 text-sm">
-                    Anna University • 2007 - 2011
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300 text-xs mt-1">
-                    Jaya Institute of Technology
-                  </p>
-                </div>
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="p-6 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-300"
+              whileHover={{ x: 4 }}
+            >
+              <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Anna University
+                </h3>
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  2007 - 2011
+                </span>
               </div>
-            </div>
+              <p className="text-gray-700 dark:text-gray-300">
+                Bachelor of Engineering · Computer Science
+              </p>
+            </motion.div>
 
-            <div className="bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900/30 dark:to-cyan-900/30 rounded-xl p-6 border border-teal-200 dark:border-teal-700 hover:shadow-lg transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-teal-600 dark:bg-teal-500 rounded-lg flex items-center justify-center text-white text-xl">
-                  📜
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                    Certifications
-                  </h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm">
-                      <span className="text-teal-600 dark:text-teal-400 mt-0.5">
-                        ✓
-                      </span>
-                      <span className="text-gray-700 dark:text-gray-300">
-                        Microsoft: HTML5, JavaScript & CSS
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2 text-sm">
-                      <span className="text-teal-600 dark:text-teal-400 mt-0.5">
-                        ✓
-                      </span>
-                      <span className="text-gray-700 dark:text-gray-300">
-                        W3C Schools: JavaScript & jQuery
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <motion.div
+              className="pt-6 border-t border-gray-200 dark:border-gray-800"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                Certifications
+              </h4>
+              <ul className="space-y-2">
+                <motion.li
+                  className="text-sm text-gray-600 dark:text-gray-400 pl-4 relative before:content-['✓'] before:absolute before:left-0 before:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  Microsoft: HTML5, JavaScript & CSS
+                </motion.li>
+                <motion.li
+                  className="text-sm text-gray-600 dark:text-gray-400 pl-4 relative before:content-['✓'] before:absolute before:left-0 before:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7, duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  W3C Schools: JavaScript & jQuery
+                </motion.li>
+              </ul>
+            </motion.div>
           </div>
         </motion.div>
       </div>

@@ -150,7 +150,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: "Blog",
-    url: "https://arunkumarvelu.hashnode.dev",
+    url: "https://blogs.arunkumarvelu.com",
     icon: SiHashnode,
   },
   { name: "Email", url: "mailto:guruvaarun@gmail.com", icon: FaEnvelope },
