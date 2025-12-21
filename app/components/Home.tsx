@@ -43,7 +43,7 @@ const Home = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-16 mb-16">
             <div className="text-center">
               <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
                 {yearsOfExperience}+
