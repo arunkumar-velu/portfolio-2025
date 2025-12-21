@@ -89,6 +89,7 @@ const Experience = () => {
                 className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-md cursor-pointer"
                 onHoverStart={() => setExpandedId(exp.id)}
                 onHoverEnd={() => setExpandedId(null)}
+                onClick={() => setExpandedId(expandedId === exp.id ? null : exp.id)}
               >
                 {/* Header - Always Visible */}
                 <div className="flex items-start gap-4 p-6">
