@@ -90,15 +90,14 @@ const Experience = () => {
             >
               <Card
                 className="group cursor-pointer hover:shadow-md transition-all duration-300"
-                onClick={() =>
-                  setExpandedId(expandedId === exp.id ? null : exp.id)
-                }
+                onMouseEnter={() => setExpandedId(exp.id)}
+                onMouseLeave={() => setExpandedId(null)}
               >
                 <CardContent className="p-6">
                   {/* Header - Always Visible */}
                   <div className="flex items-start gap-4">
                     {/* Company Logo */}
-                    <Avatar className="w-10 h-10">
+                    <Avatar className="w-10 h-10 rounded-none">
                       <AvatarImage src={exp.logo} alt={exp.company} />
                       <AvatarFallback>{exp.company.slice(0, 2)}</AvatarFallback>
                     </Avatar>
@@ -140,16 +139,16 @@ const Experience = () => {
                           height: "auto",
                           opacity: 1,
                           transition: {
-                            height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-                            opacity: { duration: 0.2, delay: 0.1 },
+                            height: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                            opacity: { duration: 0.5, delay: 0.15 },
                           },
                         }}
                         exit={{
                           height: 0,
                           opacity: 0,
                           transition: {
-                            height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-                            opacity: { duration: 0.15 },
+                            height: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                            opacity: { duration: 0.3 },
                           },
                         }}
                         className="overflow-hidden"
@@ -161,7 +160,7 @@ const Experience = () => {
                               key={idx}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.05, duration: 0.3 }}
+                              transition={{ delay: idx * 0.08, duration: 0.5 }}
                               className="text-sm text-muted-foreground leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0"
                             >
                               {achievement}
