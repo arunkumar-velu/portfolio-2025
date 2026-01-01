@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { personalInfo } from '@/lib/data';
+import { useState, useEffect } from "react";
 import { HiMenu, HiX, HiMoon, HiSun } from 'react-icons/hi';
 import { useTheme } from '@/app/context/ThemeContext';
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,8 +16,8 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
@@ -41,8 +41,8 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm'
-            : 'bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm'
+            ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm"
+            : "bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -50,7 +50,7 @@ const Header = () => {
             href="#home"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('#home');
+              scrollToSection("#home");
             }}
             className="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           >
@@ -84,26 +84,29 @@ const Header = () => {
                 </a>
               )
             )}
-            
+
             {/* Theme Toggle */}
             {mounted && (
-              <button
+              <Button
                 onClick={toggleTheme}
-                className="p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                variant="ghost"
+                size="icon"
                 aria-label="Toggle theme"
               >
-                {theme === 'light' ? <HiMoon size={20} /> : <HiSun size={20} />}
-              </button>
+                {theme === "light" ? <HiMoon size={20} /> : <HiSun size={20} />}
+              </Button>
             )}
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
+          <Button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-gray-900 dark:text-white"
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
           >
             {isMobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -142,28 +145,29 @@ const Header = () => {
                   </a>
                 )
               )}
-              
+
               {/* Mobile Theme Toggle */}
               {mounted && (
-                <button
+                <Button
                   onClick={() => {
                     toggleTheme();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="flex items-center gap-2 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors font-medium py-2"
+                  variant="ghost"
+                  className="justify-start py-2"
                 >
-                  {theme === 'light' ? (
+                  {theme === "light" ? (
                     <>
-                      <HiMoon size={20} />
+                      <HiMoon size={20} className="mr-2" />
                       <span>Dark Mode</span>
                     </>
                   ) : (
                     <>
-                      <HiSun size={20} />
+                      <HiSun size={20} className="mr-2" />
                       <span>Light Mode</span>
                     </>
                   )}
-                </button>
+                </Button>
               )}
             </nav>
           </div>

@@ -2,7 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 const Experience = () => {
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -85,93 +88,91 @@ const Experience = () => {
               viewport={{ once: true, margin: "-50px" }}
               className="group"
             >
-              <motion.div
-                className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-md cursor-pointer"
-                onHoverStart={() => setExpandedId(exp.id)}
-                onHoverEnd={() => setExpandedId(null)}
+              <Card
+                className="group cursor-pointer hover:shadow-md transition-all duration-300"
                 onClick={() =>
                   setExpandedId(expandedId === exp.id ? null : exp.id)
                 }
               >
-                {/* Header - Always Visible */}
-                <div className="flex items-start gap-4 p-6">
-                  {/* Company Logo */}
-                  <motion.div
-                    className={`flex-shrink-0 w-10 h-10 relative transition-all duration-300 ${
-                      expandedId === exp.id
-                        ? "grayscale-0"
-                        : "grayscale group-hover:grayscale-0"
-                    }`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {exp.logo && (
-                      <Image
-                        src={exp.logo}
-                        alt={exp.company}
-                        fill
-                        className="object-contain"
-                      />
-                    )}
-                  </motion.div>
+                <CardContent className="p-6">
+                  {/* Header - Always Visible */}
+                  <div className="flex items-start gap-4">
+                    {/* Company Logo */}
+                    <Avatar className="w-10 h-10">
+                      <AvatarImage src={exp.logo} alt={exp.company} />
+                      <AvatarFallback>{exp.company.slice(0, 2)}</AvatarFallback>
+                    </Avatar>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
-                        {exp.company}
-                      </h3>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {exp.period}
-                      </span>
-                    </div>
+                    {/* Content */}
+                    <div className="flex-1">
+                      <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
+                          {exp.company}
+                        </h3>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                          {exp.period}
+                        </span>
+                      </div>
 
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {exp.role} · {exp.technologies}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Expandable Achievements */}
-                <AnimatePresence>
-                  {expandedId === exp.id && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{
-                        height: "auto",
-                        opacity: 1,
-                        transition: {
-                          height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-                          opacity: { duration: 0.2, delay: 0.1 },
-                        },
-                      }}
-                      exit={{
-                        height: 0,
-                        opacity: 0,
-                        transition: {
-                          height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-                          opacity: { duration: 0.15 },
-                        },
-                      }}
-                      className="overflow-hidden border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/30"
-                    >
-                      <ul className="px-6 py-4 space-y-2">
-                        {exp.achievements.map((achievement, idx) => (
-                          <motion.li
-                            key={idx}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.05, duration: 0.3 }}
-                            className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-gray-400"
+                      <p className="text-gray-700 dark:text-gray-300">
+                        {exp.role}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {exp.technologies.split(", ").map((tech) => (
+                          <Badge
+                            key={tech}
+                            variant="secondary"
+                            className="text-xs"
                           >
-                            {achievement}
-                          </motion.li>
+                            {tech}
+                          </Badge>
                         ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Expandable Achievements */}
+                  <AnimatePresence>
+                    {expandedId === exp.id && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{
+                          height: "auto",
+                          opacity: 1,
+                          transition: {
+                            height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                            opacity: { duration: 0.2, delay: 0.1 },
+                          },
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                          transition: {
+                            height: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                            opacity: { duration: 0.15 },
+                          },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <Separator className="my-4" />
+                        <ul className="space-y-2">
+                          {exp.achievements.map((achievement, idx) => (
+                            <motion.li
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.05, duration: 0.3 }}
+                              className="text-sm text-muted-foreground leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0"
+                            >
+                              {achievement}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>

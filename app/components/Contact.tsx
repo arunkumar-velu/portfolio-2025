@@ -5,10 +5,7 @@ import { personalInfo, socialLinks } from '@/lib/data';
 
 const Contact = () => {
   return (
-    <section
-      id="contact"
-      className="py-24 bg-gray-50 dark:bg-gray-800/30 px-6"
-    >
+    <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-800/30 px-6">
       <div className="max-w-4xl w-full mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,12 +27,15 @@ const Contact = () => {
           className="space-y-8"
         >
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-            I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
+            I&apos;m always interested in hearing about new projects and
+            opportunities. Feel free to reach out!
           </p>
 
           <div className="space-y-6">
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Email</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                Email
+              </p>
               <a
                 href={`mailto:${personalInfo.email}`}
                 className="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors text-lg"
@@ -45,7 +45,9 @@ const Contact = () => {
             </div>
 
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Connect</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                Connect
+              </p>
               <div className="flex gap-4">
                 {socialLinks.map((link) => {
                   const Icon = link.icon;

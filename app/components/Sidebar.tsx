@@ -1,18 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from "react";
 import { personalInfo, socialLinks } from '@/lib/data';
-import { HiMenu, HiX, HiSun, HiMoon } from 'react-icons/hi';
-import { useTheme } from '@/app/context/ThemeContext';
+import { HiMenu, HiX } from "react-icons/hi";
+import Image from "next/image";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -59,19 +53,23 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-screen w-80 bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-gradient-to-br from-white via-gray-50 to-white border-r border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white z-40 overflow-y-auto shadow-2xl transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-screen w-80 bg-white dark:bg-linear-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 bg-linear-to-br from-white via-gray-50 to-white border-r border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white z-40 overflow-y-auto shadow-2xl transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
         <div className="p-8 flex flex-col h-full">
           {/* Profile Section */}
           <div className="mb-8 text-center">
-            <img
-              src="/arun.jpg"
-              alt={personalInfo.name}
-              className="w-32 h-32 mx-auto mb-4 rounded-2xl object-cover shadow-xl ring-4 ring-emerald-500/20 dark:ring-teal-400/30"
-            />
-            <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+            <div className="w-32 h-32 mx-auto mb-4 rounded-2xl overflow-hidden shadow-xl ring-4 ring-emerald-500/20 dark:ring-teal-400/30 relative">
+              <Image
+                src="/arun.jpg"
+                alt={personalInfo.name}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+            <h1 className="text-2xl font-bold mb-2 bg-linear-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               {personalInfo.name}
             </h1>
             <p className="text-emerald-600 dark:text-emerald-400 text-sm mb-3 font-medium">
@@ -84,7 +82,7 @@ const Sidebar = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-grow">
+          <nav className="grow">
             <ul className="space-y-1">
               {navItems.map((item) => (
                 <li key={item.name}>
@@ -93,21 +91,21 @@ const Sidebar = () => {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full block text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
+                      className="w-full block text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-linear-to-r hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         {item.name}
                         <span className="text-xs">↗</span>
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-400/10 dark:to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity -z-0"></div>
+                      <div className="absolute inset-0 bg-linear-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-400/10 dark:to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
                     </a>
                   ) : (
                     <button
                       onClick={() => scrollToSection(item.href)}
-                      className="w-full text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
+                      className="w-full text-left px-4 py-3 cursor-pointer rounded-xl hover:bg-linear-to-r hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-white hover:shadow-lg hover:scale-105 font-medium group relative overflow-hidden"
                     >
                       <span className="relative z-10">{item.name}</span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-400/10 dark:to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity -z-0"></div>
+                      <div className="absolute inset-0 bg-linear-to-r from-blue-500/10 to-cyan-500/10 dark:from-blue-400/10 dark:to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
                     </button>
                   )}
                 </li>
@@ -150,7 +148,7 @@ const Sidebar = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 flex items-center justify-center bg-gradient-to-br from-emerald-500/10 to-teal-500/10 dark:from-emerald-400/10 dark:to-teal-400/10 hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 text-gray-700 dark:text-gray-300 hover:text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                  className="w-11 h-11 flex items-center justify-center bg-linear-to-br from-emerald-500/10 to-teal-500/10 dark:from-emerald-400/10 dark:to-teal-400/10 hover:from-emerald-500 hover:to-teal-500 dark:hover:from-emerald-600 dark:hover:to-teal-600 text-gray-700 dark:text-gray-300 hover:text-white rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
                   aria-label={link.name}
                 >
                   <link.icon className="text-xl" />

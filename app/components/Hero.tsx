@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { personalInfo, socialLinks } from '@/lib/data';
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
 
@@ -17,7 +18,8 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            Hi, I'm <span className="text-blue-600">{personalInfo.name}</span>
+            Hi, I&apos;m{" "}
+            <span className="text-blue-600">{personalInfo.name}</span>
           </h1>
         </motion.div>
 
@@ -68,18 +70,12 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="flex flex-col sm:flex-row justify-center gap-5"
         >
-          <a
-            href="#projects"
-            className="px-8 py-3 bg-emerald-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 font-semibold"
-          >
-            View My Work
-          </a>
-          <a
-            href="#contact"
-            className="px-8 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-full hover:bg-blue-50 transition-colors duration-200 font-semibold"
-          >
-            Contact Me
-          </a>
+          <Button size="lg" asChild>
+            <a href="#projects">View My Work</a>
+          </Button>
+          <Button size="lg" variant="outline" asChild>
+            <a href="#contact">Contact Me</a>
+          </Button>
         </motion.div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { skills } from '@/lib/data';
+import { Badge } from "@/components/ui/badge";
 
 const Skills = () => {
   const categories = {
@@ -19,10 +20,7 @@ const Skills = () => {
   ];
 
   return (
-    <section
-      id="skills"
-      className="py-24 bg-gray-50 dark:bg-gray-800/30 px-6"
-    >
+    <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-800/30 px-6">
       <div className="max-w-4xl w-full mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,12 +50,13 @@ const Skills = () => {
               <div className="flex flex-wrap gap-2">
                 {categories[category.key as keyof typeof categories].map(
                   (skill) => (
-                    <span
+                    <Badge
                       key={skill.name}
-                      className="px-3 py-1.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-sm border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
+                      variant="outline"
+                      className="hover:bg-accent transition-colors"
                     >
                       {skill.name}
-                    </span>
+                    </Badge>
                   )
                 )}
               </div>

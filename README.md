@@ -6,9 +6,12 @@ A stunning portfolio website built with Next.js 14, TypeScript, and Tailwind CSS
 
 - **Server-Side Rendering (SSR)** - Next.js App Router for optimal SEO and performance
 - **TypeScript** - Type-safe development
-- **Tailwind CSS** - Modern, responsive design
+- **Tailwind CSS v4** - Modern, responsive design with CSS variables
+- **shadcn/ui** - Accessible, customizable component library
+- **Perpetuity Theme** - Professional design system from tweakcn.com
 - **Framer Motion** - Smooth animations and transitions
 - **Responsive Design** - Mobile-first approach, works on all devices
+- **Dark Mode** - Full theme switching support
 - **SEO Optimized** - Meta tags and structured data
 - **Smooth Scrolling** - Enhanced navigation experience
 
@@ -25,9 +28,11 @@ A stunning portfolio website built with Next.js 14, TypeScript, and Tailwind CSS
 
 - [Next.js 14](https://nextjs.org/) - React framework with App Router
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS with CSS variables
+- [shadcn/ui](https://ui.shadcn.com/) - Accessible component library
 - [Framer Motion](https://www.framer.com/motion/) - Animations
 - [React Icons](https://react-icons.github.io/react-icons/) - Icon library
+- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components (via shadcn/ui)
 
 ## 🏃‍♂️ Getting Started
 
@@ -50,6 +55,46 @@ npm run dev
 
 3. Open [http://localhost:3001](http://localhost:3001) in your browser
 
+## 🎨 shadcn/ui Setup
+
+This project uses [shadcn/ui](https://ui.shadcn.com/) with the **Perpetuity** theme from [tweakcn.com](https://tweakcn.com/).
+
+### Adding New shadcn/ui Components
+
+To add new shadcn/ui components to your project:
+
+```bash
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add dialog
+# ... or any other component
+```
+
+### Installed Components
+
+The following shadcn/ui components are already installed:
+- Button - Versatile button with multiple variants
+- Card - Container with header, content, footer
+- Badge - Labels and tags
+- Avatar - User profile pictures with fallback
+- Separator - Visual divider
+- Tooltip - Contextual information on hover
+- Dialog - Modal overlays
+- Form - Form management with validation
+- Input, Textarea, Label - Form inputs
+- Tabs - Tabbed interfaces
+- Navigation Menu - Complex navigation patterns
+
+### Theme Configuration
+
+The Perpetuity theme uses:
+- **Colors**: Blue/Cyan palette with OKLCH values
+- **Typography**: Source Code Pro / Courier New (monospace)
+- **Radius**: Sharp corners (0.125rem)
+- **Dark Mode**: Full support with CSS variables
+
+Theme variables are defined in [`app/globals.css`](app/globals.css).
+
 ## 🎨 Customization
 
 ### Update Personal Information
@@ -60,9 +105,22 @@ Edit `/lib/data.ts` to customize:
 - Skills list
 - Social media links
 
-### Change Colors
+### Change Colors & Theme
 
-Modify Tailwind classes in components or update `tailwind.config.ts` for custom theme colors.
+The portfolio uses the **Perpetuity** theme from tweakcn.com. To customize:
+
+1. **Using tweakcn.com** (Recommended):
+   - Visit [tweakcn.com](https://tweakcn.com/)
+   - Select a different theme or customize Perpetuity
+   - Copy the generated CSS variables
+   - Update `:root` and `.dark` sections in `app/globals.css`
+
+2. **Manual Customization**:
+   - Edit CSS variables in `app/globals.css`:
+     - `--primary`, `--secondary`, `--accent` for main colors
+     - `--background`, `--foreground` for base colors
+     - `--radius` for border radius
+   - Or modify `tailwind.config.ts` for additional customization
 
 ### Add Images
 
@@ -107,15 +165,29 @@ new-portfolio/
 │   │   ├── Projects.tsx
 │   │   ├── Skills.tsx
 │   │   ├── Contact.tsx
-│   │   └── Footer.tsx
-│   ├── layout.tsx        # Root layout with metadata
-│   ├── page.tsx          # Home page (SSR)
-│   └── globals.css       # Global styles
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   └── Sidebar.tsx
+│   ├── context/
+│   │   └── ThemeContext.tsx  # Dark mode context
+│   ├── layout.tsx            # Root layout with metadata
+│   ├── page.tsx              # Home page (SSR)
+│   └── globals.css           # Global styles + theme variables
+├── components/
+│   └── ui/                   # shadcn/ui components
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── badge.tsx
+│       ├── avatar.tsx
+│       ├── separator.tsx
+│       └── ...               # Other shadcn components
 ├── lib/
-│   └── data.ts           # Content data
+│   ├── data.ts               # Content data
+│   └── utils.ts              # shadcn/ui utilities (cn helper)
 ├── types/
-│   └── index.ts          # TypeScript types
-├── public/               # Static assets
+│   └── index.ts              # TypeScript types
+├── public/                   # Static assets
+├── components.json           # shadcn/ui configuration
 └── package.json
 ```
 

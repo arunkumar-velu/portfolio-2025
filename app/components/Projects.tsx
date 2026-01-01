@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { projects } from '@/lib/data';
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const Projects = () => {
   return (
@@ -31,54 +34,54 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-white dark:bg-gray-900 rounded-lg p-6 hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-800"
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
+              <Card className="group hover:shadow-md transition-shadow">
+                <CardContent className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 p-6">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech) => (
+                        <Badge key={tech} variant="secondary">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex gap-4 md:flex-col md:items-end">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center gap-1.5"
-                    >
-                      <FaExternalLinkAlt size={14} />
-                      <span>Live</span>
-                    </a>
-                  )}
-                  {project.githubUrl && (
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center gap-1.5"
-                    >
-                      <FaGithub size={16} />
-                      <span>Code</span>
-                    </a>
-                  )}
-                </div>
-              </div>
+                  <div className="flex gap-4 md:flex-col md:items-end">
+                    {project.liveUrl && (
+                      <Button variant="ghost" size="sm" asChild>
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaExternalLinkAlt size={14} />
+                          Live
+                        </a>
+                      </Button>
+                    )}
+                    {project.githubUrl && (
+                      <Button variant="ghost" size="sm" asChild>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaGithub size={16} />
+                          Code
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>

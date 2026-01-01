@@ -78,16 +78,46 @@ Edit `/app/components/Footer.tsx` to change the footer text.
 
 ## 🎨 Styling Tips
 
+### Customize Perpetuity Theme
+This portfolio uses the **Perpetuity** theme from [tweakcn.com](https://tweakcn.com/).
+
+To customize colors:
+1. Visit [tweakcn.com](https://tweakcn.com/)
+2. Select or customize a theme
+3. Copy the generated CSS variables
+4. Update `/app/globals.css` in the `:root` and `.dark` sections
+
 ### Change Primary Color
-Replace `blue-600` with another color throughout components:
-- `blue-600` → `purple-600`, `green-600`, `indigo-600`, etc.
-
-### Add Dark Mode
-Next.js supports dark mode. Add to `tailwind.config.ts`:
-
-```typescript
-darkMode: 'class',
+Edit CSS variables in `/app/globals.css`:
+```css
+:root {
+  --primary: oklch(0.5624 0.0947 203.2755); /* Blue */
+  /* Change to your preferred OKLCH color */
+}
 ```
+
+### Using shadcn/ui Components
+All UI components are in `/components/ui/`. To use them:
+```tsx
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+
+<Button variant="default">Click me</Button>
+<Card>
+  <CardContent>Content here</CardContent>
+</Card>
+```
+
+### Add New shadcn/ui Components
+```bash
+npx shadcn@latest add select
+npx shadcn@latest add dropdown-menu
+# Browse all: https://ui.shadcn.com/
+```
+
+### Dark Mode
+Dark mode is fully configured! Toggle button is in the header.
+Theme variables are defined in both `:root` (light) and `.dark` (dark) in `/app/globals.css`.
 
 ## 🚀 Deployment
 
@@ -132,6 +162,63 @@ Already using Framer Motion! Example:
 </motion.div>
 ```
 
+## 🎨 Perpetuity Theme Details
+
+### Color Palette
+The Perpetuity theme uses OKLCH color space for better color consistency:
+
+**Light Mode:**
+- Background: `oklch(0.9491 0.0085 197.0126)` - Off-white
+- Primary: `oklch(0.5624 0.0947 203.2755)` - Blue
+- Accent: `oklch(0.6812 0.0947 203.2755)` - Cyan
+
+**Dark Mode:**
+- Background: `oklch(0.1804 0.0106 197.0126)` - Dark blue-gray
+- Primary: `oklch(0.6812 0.0947 203.2755)` - Cyan
+- Accent: `oklch(0.5624 0.0947 203.2755)` - Blue
+
+### Typography
+- Font Family: Source Code Pro, Courier New (monospace)
+- Sharp corners: `0.125rem` border radius
+- Custom shadows with blue-teal tints
+
+### shadcn/ui Components in Use
+
+1. **Button** (`components/ui/button.tsx`)
+   - Variants: default, destructive, outline, secondary, ghost, link
+   - Sizes: default, sm, lg, icon
+   - Used in: Hero, Projects, Header
+
+2. **Card** (`components/ui/card.tsx`)
+   - Subcomponents: CardHeader, CardTitle, CardContent, CardFooter
+   - Used in: About, Projects, Experience
+
+3. **Badge** (`components/ui/badge.tsx`)
+   - Variants: default, secondary, destructive, outline
+   - Used in: Projects, Skills, Experience
+
+4. **Avatar** (`components/ui/avatar.tsx`)
+   - With AvatarImage and AvatarFallback
+   - Used in: About, Experience
+
+5. **Separator** (`components/ui/separator.tsx`)
+   - Used in: Footer, Experience
+
+### Customizing Component Styles
+
+To customize a shadcn/ui component:
+1. Open the component file in `/components/ui/`
+2. Modify the `className` or `variants` using Tailwind classes
+3. Changes apply globally wherever the component is used
+
+Example - Make all buttons rounded:
+```tsx
+// In components/ui/button.tsx
+const buttonVariants = cva(
+  "rounded-full ..." // Change rounded-md to rounded-full
+)
+```
+
 ### Connect Contact Form
 Replace the form handler in `/app/components/Contact.tsx` with:
 - FormSpree
@@ -153,15 +240,31 @@ Replace the form handler in `/app/components/Contact.tsx` with:
 **Styles not applying?**
 - Run `npm run dev` to restart
 - Clear browser cache
+- Check if CSS variables are properly defined in `globals.css`
+
+**shadcn/ui component not found?**
+- Run `npx shadcn@latest add <component-name>`
+- Check import paths use `@/components/ui/`
+
+**Theme not switching?**
+- Ensure ThemeContext is wrapping your app in `layout.tsx`
+- Check `globals.css` has both `:root` and `.dark` variables
 
 **Port in use?**
 - Next.js will auto-select next available port
 - Or stop other dev servers
 
+**CSS linter errors for @config, @theme?**
+- These are false positives - Tailwind v4 syntax is valid
+- The app builds and runs correctly
+
 ## 📚 Learning Resources
 
 - [Next.js Docs](https://nextjs.org/docs)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [shadcn/ui Components](https://ui.shadcn.com/)
+- [tweakcn.com Themes](https://tweakcn.com/)
+- [Radix UI Primitives](https://www.radix-ui.com/)
 - [Framer Motion Docs](https://www.framer.com/motion/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 
