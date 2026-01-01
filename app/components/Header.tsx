@@ -92,6 +92,7 @@ const Header = () => {
                 variant="ghost"
                 size="icon"
                 aria-label="Toggle theme"
+                className=" cursor-pointer"
               >
                 {theme === "light" ? <HiMoon size={20} /> : <HiSun size={20} />}
               </Button>
